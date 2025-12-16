@@ -1,0 +1,16 @@
+name: arabki_pro
+description: Arabic flashcards app
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  audioplayers: ^5.2.1
+
+flutter:
+  uses-material-design: true
