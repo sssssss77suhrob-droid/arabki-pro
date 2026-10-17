@@ -209,3 +209,5 @@ function parse(text){
 
 return parse(text);
 }
+
+function configureBot(){const email=Session.getActiveUser().getEmail();if(!email||email!==Session.getEffectiveUser().getEmail())throw Error("Faqat loyiha egasi sozlashi mumkin.");setup_();}

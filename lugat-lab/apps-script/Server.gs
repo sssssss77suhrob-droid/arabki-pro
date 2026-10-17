@@ -90,3 +90,5 @@ function doGet(e){
  return HtmlService.createHtmlOutput(html).setTitle('Lug‘at Lab').addMetaTag('viewport','width=device-width, initial-scale=1').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
  }catch(e){return HtmlService.createHtmlOutput('<h2>Lug‘at Lab</h2><p>Telegram botdagi yangi Mini App tugmasi orqali oching. Havola 24 soat amal qiladi.</p>')}
 }
+
+function configureBot(){const email=Session.getActiveUser().getEmail();if(!email||email!==Session.getEffectiveUser().getEmail())throw Error("Faqat loyiha egasi sozlashi mumkin.");setup_();}

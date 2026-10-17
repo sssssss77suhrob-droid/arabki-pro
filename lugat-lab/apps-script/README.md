@@ -5,7 +5,7 @@ Server.gs tahrir uchun manba; Code.gs ichida uning nusxasi va UI/parser bor.
 
 1. Apps Script loyihasiga Code.gs ni kiriting.
 2. Project Settings → Script properties: TELEGRAM_BOT_TOKEN (learnararabic_bot), GEMINI_API_KEY (ixtiyoriy, bepul Gemini API loyihasi). Kalitlarni kodga yozmang.
-3. Editor → setup_ ni bajaring. Google Drive, tashqi so‘rovlar, trigger yaratish uchun ruxsat kerak. Hisob egasi tasdiqlaydi.
+3. Editor → configureBot ni bajaring. Google Drive, tashqi so‘rovlar, trigger yaratish uchun ruxsat kerak. Hisob egasi tasdiqlaydi.
 4. Deploy → New deployment → Web app → Execute as Me → access Anyone. /exec manzilini WEB_APP_URL script property sifatida saqlang.
 5. Telegramda /start yuboring. Bir daqiqalik trigger sabab javob kechikishi mumkin. Botni boshqa serverda parallel ishlatmang.
 6. To‘plam yarating, nom bering, HTMLni oching, Mini Appda saqlangan to‘plamni tekshiring. Token va kalit kiritilmaguncha real integratsiya tekshirilmagan.
