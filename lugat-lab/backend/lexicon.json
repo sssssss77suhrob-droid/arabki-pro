@@ -1,0 +1,92 @@
+[
+  {
+    "ar": "يَكْتُبُ",
+    "uz": "yozmoq",
+    "type": "verb",
+    "past": "كَتَبَ",
+    "present": "يَكْتُبُ",
+    "imperative": "اُكْتُبْ",
+    "masdar": "كِتَابَةٌ",
+    "first": "أَكْتُبُ",
+    "gloss_forms": [
+      "yozmoq",
+      "yozdi",
+      "yozadi",
+      "yozyapti",
+      "yozmoqda",
+      "yozish",
+      "yoz",
+      "yozaman"
+    ]
+  },
+  {
+    "ar": "كِتَابٌ",
+    "uz": "kitob",
+    "type": "noun",
+    "plural": "كُتُبٌ"
+  },
+  {
+    "ar": "يَقْرَأُ",
+    "uz": "o‘qimoq",
+    "type": "verb",
+    "past": "قَرَأَ",
+    "present": "يَقْرَأُ",
+    "imperative": "اِقْرَأْ",
+    "masdar": "قِرَاءَةٌ",
+    "first": "أَقْرَأُ",
+    "gloss_forms": [
+      "o‘qimoq",
+      "o‘qidi",
+      "o‘qiydi",
+      "o‘qiyapti",
+      "o‘qimoqda",
+      "o‘qish",
+      "o‘qi",
+      "o‘qiyman"
+    ]
+  },
+  {
+    "ar": "قَلَمٌ",
+    "uz": "qalam",
+    "type": "noun",
+    "plural": "أَقْلَامٌ"
+  },
+  {
+    "ar": "بَيْتٌ",
+    "uz": "uy",
+    "type": "noun",
+    "plural": "بُيُوتٌ"
+  },
+  {
+    "ar": "يَذْهَبُ",
+    "uz": "bormoq",
+    "type": "verb",
+    "past": "ذَهَبَ",
+    "present": "يَذْهَبُ",
+    "imperative": "اِذْهَبْ",
+    "masdar": "ذَهَابٌ",
+    "first": "أَذْهَبُ",
+    "gloss_forms": [
+      "bormoq",
+      "bordi",
+      "boradi",
+      "boryapti",
+      "bormoqda",
+      "borish",
+      "bor",
+      "boraman"
+    ]
+  },
+  {
+    "ar": "صَدِيقٌ",
+    "uz": "do‘st",
+    "type": "noun",
+    "plural": "أَصْدِقَاءُ"
+  },
+  {
+    "ar": "جَمِيلٌ",
+    "uz": "chiroyli",
+    "type": "noun",
+    "plural": "جَمِيلُونَ"
+  }
+]

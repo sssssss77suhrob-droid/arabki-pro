@@ -1,0 +1,238 @@
+<!doctype html><html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lug‘at Lab — arab tilini har kuni</title><style>
+:root{--ink:#183d36;--green:#225b4b;--bg:#f5f4ee;--line:#dedfd5;--muted:#778079}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px system-ui,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:12px 17px;background:#fff;color:var(--ink);transition:transform .18s,background .18s}button:hover{background:#e9eee5;transform:translateY(-2px)}button:disabled{opacity:.4;cursor:default}button:focus-visible,input:focus,textarea:focus,select:focus{outline:3px solid #c5a965}button.primary{background:var(--green);color:#fff;border-color:var(--green)}button.danger{color:#a2473b;background:#fff3ef}input,select,textarea{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;color:var(--ink)}textarea{width:100%;min-height:160px;line-height:1.7}header{border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:22px 5%;gap:16px}.logo{font-size:23px;font-weight:750;letter-spacing:-1px}.logo span{display:inline-grid;place-items:center;background:var(--green);color:#fff;width:39px;height:39px;border-radius:12px;margin-right:10px;font-family:serif}.tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}nav{display:flex;gap:8px}nav button{background:transparent;border:0}main{max-width:1130px;margin:auto;padding:42px 28px}.hero{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;gap:25px}h1{font:normal 43px Georgia,serif;letter-spacing:-1.6px;margin:10px 0 12px}h2{font:normal 28px Georgia,serif;margin:0 0 18px}p{line-height:1.65;color:var(--muted)}.hero p{margin:0}.badge{background:#e8eddf;border:1px solid #d4ddc6;padding:9px 15px;border-radius:30px;font-size:13px}.layout{display:grid;grid-template-columns:1fr 290px;gap:25px}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:25px}.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}.switch{display:flex;gap:5px;background:#eaece4;padding:5px;border-radius:13px}.switch button{background:none;border:0;padding:9px 15px}.switch .active{background:#fff;box-shadow:0 2px 5px #0001}.progress{height:5px;border-radius:8px;background:#e9ece4;margin:18px 0}.progress div{height:100%;background:#b4c491;border-radius:8px;transition:width .3s}.card{min-height:320px;border:1px solid #dedfce;border-radius:19px;background:#fbfbf5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;position:relative;touch-action:pan-y;}.word{font-family:'Traditional Arabic','Noto Naskh Arabic',serif;font-size:64px;line-height:1.6;margin:18px 0 3px}.translation{font-size:25px;margin:12px}.tiny{font-size:12px;color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.spread{justify-content:space-between}.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.known{background:#e5eedd;border-color:#d8e2cf}.unknown{background:#f9eee7;border-color:#ebddd2}.side-title{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}.metric{font:38px Georgia,serif;margin:14px 0 5px}.rule{border-top:1px solid var(--line);margin:24px 0}.tip{font-size:13px;line-height:1.8;color:var(--muted)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-grid label{display:grid;gap:8px}.deck{padding:22px;border:1px solid var(--line);border-radius:17px;background:#fff;margin:14px 0}.deck h3{margin:0 0 8px}.feedback{padding:13px;border-radius:10px;margin:12px 0;background:#edf3e7}.bad{background:#fff0e9;color:#984b39}.hidden{display:none!important}.forms{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}.forms span{background:#edf0e7;padding:9px 14px;border-radius:8px}.forms b{display:block;font:27px serif;margin-top:6px}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#183d36;color:white;border-radius:14px;padding:15px 24px;z-index:10;max-width:90%}footer{text-align:center;color:var(--muted);padding:25px;font-size:12px}.answer{width:100%;text-align:center;font-size:22px;margin-top:15px}.status{font-size:12px;color:var(--muted);margin-top:10px}dialog{border:1px solid var(--line);border-radius:22px;max-width:650px;width:95%;padding:25px}dialog::backdrop{background:#17382a66}@keyframes enter{from{opacity:.1;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(max-width:760px){header{padding:15px 20px}.tag.header-tag{display:none}nav button{padding:8px}main{padding:25px 16px}.hero{align-items:start}h1{font-size:34px}.hero .badge{display:none}.layout{grid-template-columns:1fr}.sidebar{display:none}.panel{padding:17px}.word{font-size:55px}.form-grid{grid-template-columns:1fr}.toolbar{gap:8px}.card{min-height:300px}}
+
+.card-scene{perspective:1400px;animation:enter .26s ease}
+.card{display:grid;padding:0;background:transparent;border:0;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card.flipped{transform:rotateY(180deg)}
+.card-face{grid-area:1/1;min-width:0;min-height:320px;border:1px solid #dedfce;border-radius:19px;background:#fbfbf5;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow-wrap:anywhere}
+.card-back{transform:rotateY(180deg);background:#eff3e8}
+.accepted{max-width:100%;margin:12px 0;line-height:1.7;color:#637464;font-size:13px}
+@media(max-width:760px){.card-face{padding:22px 16px;min-height:300px}}
+@media(prefers-reduced-motion:reduce){.card,.card-scene,button,.progress div{transition:none;animation:none}}
+</style></head><body><header><div class="logo"><span>ل</span>Lug‘at Lab</div><nav><button onclick="show('study')">Mashq</button><button onclick="show('library')">To‘plamlar</button><button onclick="show('create')">＋ Yaratish</button></nav><div class="tag header-tag">BIR SO‘Z. YANGI IMKONIYAT.</div></header><main><div class="hero"><div><div class="tag">ARAB TILI • SHAXSIY LUG‘ATINGIZ</div><h1>Bilim, bir so‘zdan boshlanadi.</h1><p>Yodlang. Yozing. Takrorlang. O‘z sur’atingizda.</p></div><span class="badge">✦ Har kuni kichik bir qadam</span></div><div id="connection" class="status"></div><section id="study"><div class="layout"><div class="panel"><div class="toolbar"><div class="switch"><button id="flashTab" onclick="setMode('flash')">Flashcard</button><button id="writeTab" onclick="setMode('write')">Yozma imtihon</button></div><select aria-label="Savol yo‘nalishi" id="direction" onchange="changeDirection()"><option value="ar">Arabcha → O‘zbekcha</option><option value="uz">O‘zbekcha → Arabcha</option><option value="mixed">Aralash yo‘nalish</option></select></div><div class="row spread"><strong id="deckTitle"></strong><label class="tiny"><input type="checkbox" id="auto" onchange="audioPreference()"> Avto talaffuz</label></div><div class="progress"><div id="bar"></div></div><div class="row spread tiny" style="margin-bottom:15px"><span id="counter"></span><span id="hint"></span></div><div id="exercise"></div><div class="row spread"><button id="prev" onclick="move(-1)">← Oldingi</button><button onclick="shuffleCurrent()">⤨ Aralashtirish</button><button id="next" onclick="move(1)">Keyingi →</button></div></div><aside class="panel sidebar"><div class="side-title">BUGUNGI MASHQ</div><div class="metric" id="total">0</div><div class="tiny">ta so‘z bilan bir qadam oldinga</div><div class="rule"></div><div class="row spread"><span>✓ Bilaman</span><strong id="yesCount">0</strong></div><br><div class="row spread"><span>↺ Takrorlayman</span><strong id="noCount">0</strong></div><div class="rule"></div><div class="side-title">KICHIK MASLAHAT</div><p class="tip">Javobni ochishdan oldin so‘zni ovoz chiqarib ayting. Eslashga urinishning o‘zi ham o‘rganishdir.</p><p class="tip">← Bilmayman &nbsp; • &nbsp; Bilaman →<br>Bo‘sh joy — kartani ochish</p><button style="width:100%" onclick="finish()">Natijani ko‘rish</button></aside></div><div class="row" style="margin-top:16px"><button onclick="askSaveName()">Saqlash</button><button onclick="download(mode)">↓ HTML yuklab olish</button><button onclick="finish()">Mashqni yakunlash</button></div></section><section id="library" class="hidden"><div class="toolbar"><h2>Saqlangan to‘plamlar</h2><button class="primary" onclick="show('create')">＋ Yangi to‘plam</button></div><div class="row"><button onclick="mixAll('flash')">⤨ Barchasidan flashcard</button><button onclick="mixAll('write')">⤨ Barchasidan yozma</button></div><div id="decks"></div></section><section id="create" class="hidden panel"><h2>Yangi lug‘at to‘plami</h2><p>Oddiy so‘zlarni yoki fe’lning to‘rt shaklini yuboring. Shakllar bitta kartaga jamlanadi, asosiy so‘z — muzori’. Bir nechta to‘g‘ri tarjimani «;» bilan ajrating.</p><div class="form-grid"><label>To‘plam nomi<input id="name" placeholder="Masalan: 1-dars · Kundalik hayot" maxlength="80"></label><label>Mashq turi<select id="newMode"><option value="flash">HTML · Flashcard</option><option value="write">HTML · Yozma imtihon</option></select></label></div><details style="margin:16px 0"><summary>Kiritish namunalari</summary><p class="tiny">To‘rt shakl: كَتَبَ / يَكْتُبُ / اُكْتُبْ / كِتَابَةٌ — yozmoq<br><br>Yoki alohida satrlarda:<br>Tarjima: yozmoq<br>Moziy: كَتَبَ<br>Muzori’: يَكْتُبُ<br>Amr: اُكْتُبْ<br>Masdar: كِتَابَةٌ<br><br>Oddiy: كِتَابٌ — kitob<br>Ot: كِتَابٌ | kitob | noun | كُتُبٌ<br>Fe’l: يَكْتُبُ | yozmoq | verb | كَتَبَ | يَكْتُبُ | اُكْتُبْ | كِتَابَةٌ | أَكْتُبُ</p></details><textarea id="words" aria-label="Lug‘atlar" placeholder="كِتَابٌ — kitob&#10;قَلَمٌ — qalam&#10;أكتب — yozmoq"></textarea><div class="row" style="margin-top:15px"><label><input type="checkbox" id="ai"> AI bilan shakllarni to‘ldirish (ulangan botda)</label><button class="primary" id="generate" onclick="createDeck()">To‘plamni yaratish →</button></div><p id="createStatus" role="status"></p></section><section id="results" class="hidden panel"></section></main><footer>Lug‘at Lab · O‘rganishga mehr bilan &nbsp; / &nbsp; Talaffuz qurilmangizdagi ovozlarga bog‘liq.</footer><dialog id="saveDialog"><h2>To‘plam tayyor</h2><p>HTML faylini yuklab olib, to‘plamni keyingi mashqlar uchun saqlashingiz mumkin.</p><div class="row"><button class="primary" onclick="askSaveName()">Saqlash</button><button onclick="download(mode)">↓ HTML yuklash</button><button onclick="document.getElementById('saveDialog').close()">Hozircha saqlamaslik</button></div></dialog><dialog id="nameDialog" aria-labelledby="nameHeading"><form onsubmit="event.preventDefault();saveCurrent()"><h2 id="nameHeading">Qanday nom bilan saqlaymiz?</h2><label for="saveName">To‘plam nomi</label><input id="saveName" style="display:block;width:100%;margin:12px 0" maxlength="80" required placeholder="Masalan: 2-dars · Fe’llar"><p class="tiny">HTML fayli va saqlangan to‘plam shu nomda bo‘ladi.</p><p id="saveError" role="alert"></p><div class="row"><button id="confirmSave" type="submit" class="primary">Nom bilan saqlash</button><button type="button" onclick="document.getElementById('nameDialog').close()">Bekor qilish</button></div></form></dialog><script id="embedded" type="application/json">null</script><script>
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sample=[{"ar":"يَكْتُبُ","uz":"yozmoq","type":"verb","past":"كَتَبَ","present":"يَكْتُبُ","imperative":"اُكْتُبْ","masdar":"كِتَابَةٌ","first":"أَكْتُبُ","gloss_forms":["yozmoq","yozdi","yozadi","yozyapti","yozmoqda","yozish","yoz","yozaman"]},{"ar":"كِتَابٌ","uz":"kitob","type":"noun","plural":"كُتُبٌ"},{"ar":"يَقْرَأُ","uz":"o‘qimoq","type":"verb","past":"قَرَأَ","present":"يَقْرَأُ","imperative":"اِقْرَأْ","masdar":"قِرَاءَةٌ","first":"أَقْرَأُ","gloss_forms":["o‘qimoq","o‘qidi","o‘qiydi","o‘qiyapti","o‘qimoqda","o‘qish","o‘qi","o‘qiyman"]},{"ar":"قَلَمٌ","uz":"qalam","type":"noun","plural":"أَقْلَامٌ"},{"ar":"بَيْتٌ","uz":"uy","type":"noun","plural":"بُيُوتٌ"},{"ar":"يَذْهَبُ","uz":"bormoq","type":"verb","past":"ذَهَبَ","present":"يَذْهَبُ","imperative":"اِذْهَبْ","masdar":"ذَهَابٌ","first":"أَذْهَبُ","gloss_forms":["bormoq","bordi","boradi","boryapti","bormoqda","borish","bor","boraman"]},{"ar":"صَدِيقٌ","uz":"do‘st","type":"noun","plural":"أَصْدِقَاءُ"},{"ar":"جَمِيلٌ","uz":"chiroyli","type":"noun","plural":"جَمِيلُونَ"}];
+let saved=[];try{saved=JSON.parse(localStorage.getItem('lugatDecks')||'[]')}catch{}const embedded=JSON.parse($('embedded').textContent);let current=embedded||{id:'sample',name:'Birinchi qadam · Kundalik so‘zlar',mode:'flash',words:sample},mode=current.mode||'flash',queue=[],pos=0,answers={},flipped=false,side='ar',remote=false,initData='',view='study';
+function toast(s){const e=document.createElement('div');e.className='toast';e.setAttribute('role','status');e.textContent=s;document.body.append(e);setTimeout(()=>e.remove(),4000)}
+function norm(s){return s.normalize('NFKC').replace(/[\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed\u0640]/g,'').toLowerCase().replace(/[‘’ʻʼ`]/g,"'").trim().replace(/\s+/g,' ')}
+// Derive only third-person positive present variants; keep other persons and negation distinct.
+function uzNorm(value){return norm(value).replace(/[.!?]+$/u,'').trim()}
+function isPresentVerb(w){
+  if(w.type==='verb'&&w.present&&norm(w.ar)===norm(w.present))return true;
+  return sample.some(k=>k.type==='verb'&&norm(k.ar)===norm(w.ar)&&uzNorm(k.uz)===uzNorm(w.uz));
+}
+function acceptedUz(w){
+  const bases=w.uz.split(/[;/]/).map(uzNorm).filter(Boolean);
+  const result=new Set([...bases,...(Array.isArray(w.accepted_uz)?w.accepted_uz.map(uzNorm):[])]);
+  if(isPresentVerb(w))for(const base of bases){
+    if(!base.endsWith('moq'))continue;
+    const stem=base.slice(0,-3);if(!stem)continue;
+    const variants=[stem+(/[aeiou]$/u.test(stem)?'ydi':'adi'),stem+'yapti',stem+'moqda'];
+    for(const v of variants){result.add(v);result.add('u '+v)}
+  }
+  return [...result];
+}
+function isCorrect(w,value,direction){
+  return direction==='ar'?acceptedUz(w).includes(uzNorm(value)):w.ar.split(/[;/]/).some(x=>norm(x)===norm(value));
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+async function api(path,options={}){const r=await fetch('/api'+path,{...options,headers:{'Content-Type':'application/json','X-Telegram-Init-Data':initData,...options.headers}});if(!r.ok){let msg='Server xatosi';try{msg=(await r.json()).detail||msg}catch{}throw Error(msg)}return r.json()}
+async function init(){if(location.protocol!=='file:'){const s=document.createElement('script');s.src='https://telegram.org/js/telegram-web-app.js';s.onload=async()=>{initData=window.Telegram?.WebApp?.initData||'';window.Telegram?.WebApp?.ready();if(initData){try{saved=await api('/decks');remote=true;$('connection').textContent='● Telegram bilan sinxronlangan'}catch(e){toast(e.message)}}};document.head.append(s)}$('connection').textContent='Qurilmadagi rejim · To‘plamlar shu brauzerda saqlanadi. Telegram sinxronlash bot ulanganda ishlaydi.';try{$('auto').checked=localStorage.getItem('autoAudio')==='true'}catch{}reset()}
+function show(v){view=v;['study','library','create','results'].forEach(x=>$(x).classList.toggle('hidden',x!==v));if(v==='library')renderLibrary()}
+function reset(){queue=current.words.map((w,i)=>({...w,key:i}));pos=0;answers={};flipped=false;show('study');render()}
+function setMode(m){mode=m;flipped=false;answers={};pos=0;render()}
+function changeDirection(){flipped=false;answers={};render()}
+function render(){
+ if(!queue.length)return;
+ const w=queue[pos];side=$('direction').value;if(side==='mixed')side=pos%2?'uz':'ar';
+ $('deckTitle').textContent=current.name;$('counter').textContent=`${pos+1} / ${queue.length} so‘z`;
+ $('hint').textContent=mode==='flash'?'Kartani oching va o‘zingizni baholang':'Javobni yozing · Harakatlar ixtiyoriy';
+ $('bar').style.width=((pos+1)/queue.length*100)+'%';
+ $('flashTab').classList.toggle('active',mode==='flash');$('writeTab').classList.toggle('active',mode==='write');
+ $('total').textContent=queue.length;updateCounts();$('prev').disabled=pos===0;
+ $('next').textContent=pos===queue.length-1?'Natija →':'Keyingi →';
+ const a=answers[w.key],target=side==='ar'?'uz':'ar';
+ const aliases=side==='ar'?acceptedUz(w).filter(x=>!x.startsWith('u ')&&!w.uz.split(/[;/]/).map(uzNorm).includes(x)):[];
+ $('exercise').innerHTML=`<div class="card-scene"><div class="card${flipped?' flipped':''}" id="card">
+ <div class="card-face card-front" id="frontFace" aria-hidden="${flipped}" ${flipped?'inert':''}>
+ <div class="tag">${side==='ar'?'MA’NOSINI ESLANG':'ARABCHASINI ESLANG'}</div>
+ <div class="${side==='ar'?'word':'translation'}" dir="${side==='ar'?'rtl':'ltr'}">${esc(w[side])}</div>
+ <button aria-label="Talaffuzni eshitish" onclick="speak()">◖)) Talaffuz</button>
+ ${mode==='flash'?'<button id="frontFlip" style="margin-top:20px" onclick="flip()">Javobni ko‘rish ↻</button>':`<form style="width:100%" onsubmit="event.preventDefault();check()"><input id="answer" class="answer" autocomplete="off" dir="${side==='ar'?'ltr':'rtl'}" placeholder="${side==='ar'?'O‘zbekcha javob…':'اكتب هنا…'}" aria-label="Javob" value="${esc(a?.value||'')}"><button class="primary" style="margin-top:12px" type="submit">Tekshirish</button></form><div id="feedback" aria-live="polite"></div>`}
+ </div>
+ <div class="card-face card-back" id="backFace" aria-hidden="${!flipped}" ${!flipped?'inert':''}>
+ <div class="tag">TO‘G‘RI JAVOB</div><div class="${target==='ar'?'word':'translation'}" dir="${target==='ar'?'rtl':'ltr'}">${esc(w[target])}</div>
+ ${aliases.length?`<div class="accepted">Bu javoblar ham to‘g‘ri: ${aliases.map(esc).join(' · ')}</div>`:''}
+ <button onclick="speak()" aria-label="Arabcha talaffuzni eshitish">◖)) Talaffuz</button>
+ ${details(w)}<button id="backFlip" style="margin-top:20px" onclick="flip()">↶ Savolga qaytish</button>
+ </div></div></div>
+ ${mode==='flash'?'<div class="actions"><button class="unknown" onclick="grade(false)">← Bilmayman</button><button class="known" onclick="grade(true)">Bilaman ✓ →</button></div>':'<div style="height:18px"></div>'}`;
+ if(mode==='write'&&a)feedback(a);
+ let x=null;
+ $('card').onpointerdown=e=>{x=e.target.closest('button,input,select,textarea')?null:e.clientX};
+ $('card').onpointerup=e=>{if(x!==null&&mode==='flash'&&Math.abs(e.clientX-x)>75)grade(e.clientX>x);x=null};
+ $('card').onpointercancel=()=>{x=null};
+ if($('auto').checked&&side==='ar')speak();
+}
+function updateCounts(){
+ $('yesCount').textContent=Object.values(answers).filter(x=>x.ok).length;
+ $('noCount').textContent=Object.values(answers).filter(x=>!x.ok).length;
+}
+function details(w){return `<div class="row" style="justify-content:center;margin-top:12px">${w.type==='verb'?'<button onclick="revealForms()">Moziy · Muzori’ · Amr · Masdar</button><button onclick="revealFirst()">Men shakli</button>':'<button onclick="revealPlural()">Ko‘plik</button>'}</div><div id="extra" class="forms"></div>`}
+function revealForms(){const w=queue[pos];$('extra').innerHTML=[['Moziy',w.past],['Muzori’',w.present],['Amr',w.imperative],['Masdar',w.masdar]].map(([a,b])=>`<span>${a}<b dir="rtl">${esc(b||'Kiritilmagan')}</b></span>`).join('')}
+function revealFirst(){$('extra').textContent=queue[pos].first||'Men shakli kiritilmagan. AI yoki qo‘lda to‘ldiring.'}function revealPlural(){$('extra').textContent=queue[pos].plural||'Ko‘plik kiritilmagan yoki bu so‘zga qo‘llanmaydi.'}
+function flip(force){
+ flipped=typeof force==='boolean'?force:!flipped;
+ $('card').classList.toggle('flipped',flipped);
+ $('frontFace').inert=flipped;$('backFace').inert=!flipped;
+ $('frontFace').setAttribute('aria-hidden',String(flipped));$('backFace').setAttribute('aria-hidden',String(!flipped));
+ (flipped?$('backFlip'):($('frontFlip')||$('answer')))?.focus({preventScroll:true});
+ if(flipped&&side==='uz'&&$('auto').checked)speak();
+}
+function check(){const v=$('answer').value.trim();if(!v){toast('Avval javobni yozing');return}
+ const w=queue[pos],ok=isCorrect(w,v,side);answers[w.key]={ok,value:v};feedback(answers[w.key]);updateCounts();}
+function feedback(a){$('feedback').innerHTML=`<div class="feedback ${a.ok?'':'bad'}">${a.ok?'✓ To‘g‘ri!':'↺ Xato. Yana urinib ko‘ring.'}</div><button onclick="revealAnswer()">${a.ok?'Javob va shakllar ↻':'To‘g‘ri javobni ko‘rish ↻'}</button>`}
+function revealAnswer(){flip(true)}
+function grade(ok){answers[queue[pos].key]={ok};move(1)}function move(n){if(pos+n>=queue.length){finish();return}pos=Math.max(0,pos+n);flipped=false;render()}
+function speak(){if(!('speechSynthesis'in window)){toast('Qurilmada talaffuz xizmati mavjud emas');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(queue[pos].ar);u.lang='ar-SA';u.rate=.8;u.onerror=()=>toast('Arabcha ovoz mavjud emas yoki audio bloklangan');speechSynthesis.speak(u)}
+function audioPreference(){try{localStorage.setItem('autoAudio',$('auto').checked)}catch{}if($('auto').checked)speak();else window.speechSynthesis?.cancel()}
+function shuffleCurrent(){shuffle(queue);pos=0;flipped=false;render()}
+function finish(){const wrong=queue.filter(w=>answers[w.key]&&!answers[w.key].ok),unanswered=queue.filter(w=>!answers[w.key]),right=queue.filter(w=>answers[w.key]?.ok).length;show('results');$('results').innerHTML=`<div class="tag">MASHQ NATIJASI</div><h1>${right} / ${queue.length}</h1><p>${right} ta bilasiz · ${wrong.length} ta takrorlash kerak · ${unanswered.length} ta javobsiz</p><h2>Takrorlash uchun so‘zlar</h2>${wrong.length?wrong.map(w=>`<div class="deck row spread"><span dir="rtl" style="font:30px serif">${esc(w.ar)}</span><span>${esc(w.uz)}</span></div>`).join(''):'<p>Xato deb belgilangan so‘z yo‘q.</p>'}<div class="row"><button onclick="reset()">Qayta boshlash</button>${wrong.length?'<button class="primary" onclick="retryWrong()">Faqat xatolarni takrorlash</button>':''}<button onclick="show(\'study\')">Mashqqa qaytish</button></div>`}
+function retryWrong(){queue=queue.filter(w=>answers[w.key]&&!answers[w.key].ok);answers={};pos=0;flipped=false;show('study');render()}
+// Embedded verbatim in the standalone HTML; Python equivalent: backend/vocabulary.py.
+function wordLabel(value){return norm(value).replace(/['’‘ʻʼ`:]/g,'').trim()}
+const formLabels=Object.fromEntries(Object.entries({
+ 'moziy':'past','mozi':'past','ماضي':'past','الماضي':'past',
+ 'muzori':'present','muzoriy':'present','muzoriʼ':'present','muzore':'present','مضارع':'present','المضارع':'present',
+ 'amr':'imperative','أمر':'imperative','الأمر':'imperative','امر':'imperative',
+ 'masdar':'masdar','مصدر':'masdar','المصدر':'masdar',
+ 'mutakallim':'first','men':'first','men shakli':'first','1-shaxs':'first','birinchi shaxs':'first',
+ 'tarjima':'uz','maʼnosi':'uz','manosi':'uz','oʻzbekcha':'uz','uzbekcha':'uz','uz':'uz',
+ 'koʻplik':'plural','koplik':'plural'
+}).map(([k,v])=>[wordLabel(k),v]));
+function hasArabic(value){return /[\u0621-\u064a\u0671-\u06d3]/u.test(value)}
+function vocabSides(value){
+ const p=value.split(/\s*(?:\||\/|—|–|→|=>|\t|،|,| - )\s*/u).map(x=>x.trim()).filter(Boolean);
+ return [p.filter(hasArabic),p.filter(x=>!hasArabic(x)).join('; ')];
+}
+function normalizeWords(words){
+ const out=[],seen=new Map();
+ for(const raw of words){
+  let w={...raw},key=norm(w.present||w.ar||'');
+  const known=sample.find(k=>key&&['ar','first','past','present','imperative','masdar'].some(f=>norm(k[f]||'')===key));
+  if(known){
+   w={...known,...Object.fromEntries(Object.entries(w).filter(([k,v])=>v!==''&&v!==null&&v!=='unknown'))};
+   const glosses=(w.uz||'').split(/[;/]/u).map(x=>norm(x).replace(/[.!?]+$/u,'').trim());
+   const allowed=new Set((known.gloss_forms||[]).map(norm));
+   if(glosses.length&&glosses.every(g=>allowed.has(g)))w.uz=known.uz;
+   if(!raw.type||raw.type==='unknown')for(const field of ['past','present','imperative','masdar','first']){
+    if(known[field]&&norm(raw.ar||'')===norm(known[field]))w[field]=raw.ar;
+   }
+  }
+  if(w.type==='verb'&&w.present)w.ar=w.present;
+  if(!w.ar||!w.uz)throw Error('Har bir so‘z uchun arabcha shakl va tarjima kerak.');
+  const id=norm(w.ar)+'|'+norm(w.uz);
+  if(seen.has(id)){
+   const prev=out[seen.get(id)];for(const [f,v] of Object.entries(w))if(!prev[f]&&v)prev[f]=v;
+   prev.accepted_uz=[...new Set([...(prev.accepted_uz||[]),...(w.accepted_uz||[])])];
+  }else{seen.set(id,out.length);out.push(w)}
+ }
+ return out;
+}
+function parse(text){
+ const out=[];let group={},rawForms=[],lastLine=1,explicit=false;
+ function flush(){
+  if(rawForms.length){
+   if(rawForms.length!==4||!norm(rawForms[1]).startsWith('ي'))throw Error(`${lastLine}-satr atrofida: shakllarga Moziy/Muzori/Amr/Masdar deb nom bering.`);
+   ['past','present','imperative','masdar'].forEach((f,i)=>group[f]=rawForms[i]);
+  }
+  if(Object.keys(group).length){
+   if(!group.present||!group.uz)throw Error(`${lastLine}-satr atrofida muzori’ va tarjima kerak. Tarjima: yozmoq kabi kiriting.`);
+   out.push({...group,ar:group.present,type:'verb'});
+  }
+  group={};rawForms=[];explicit=false;
+ }
+ const lines=text.replace(/\r/g,'').split('\n');
+ for(let number=1;number<=lines.length;number++){
+  lastLine=number;
+  const line=lines[number-1].trim().replace(/^\s*(?:[-*•]\s+|[0-9]+[.)]\s*)/u,'').replaceAll('**','').trim();
+  if(!line||line.startsWith('```'))continue;
+  const match=line.match(/^([^:：=—–]+)\s*[:：=—–]\s*(.+)$/u),label=match?formLabels[wordLabel(match[1])]:null;
+  if(label){
+   const value=match[2].trim();
+   if(label==='uz'){
+    if(group.present&&explicit)flush();group.uz=value;explicit=true;continue;
+   }
+   if(['past','present'].includes(label)&&group[label])flush();
+   const [arabic,meaning]=vocabSides(value);
+   if(arabic.length!==1)throw Error(`${number}-satrda bitta arabcha shakl kiriting.`);
+   group[label]=arabic[0];if(meaning&&!explicit&&(label==='present'||!group.uz))group.uz=meaning;
+   continue;
+  }
+  const p=line.split('|').map(x=>x.trim());
+  if(p.length>=3&&['verb','noun'].includes(p[2])){
+   if(Object.keys(group).length||rawForms.length)flush();
+   const w={ar:p[0],uz:p[1],type:p[2]};
+   if(p[2]==='verb'){
+    if(p.length<7||!p.slice(3,7).every(Boolean))throw Error(`${number}-satr: moziy, muzori’, amr, masdar kerak.`);
+    ['past','present','imperative','masdar'].forEach((f,i)=>w[f]=p[i+3]);
+    w.first=p[7]||'';w.accepted_uz=(p[8]||'').split(';').map(x=>x.trim()).filter(Boolean);
+   }else{w.plural=p[3]||'';w.accepted_uz=(p[4]||'').split(';').map(x=>x.trim()).filter(Boolean)}
+   out.push(w);continue;
+  }
+  const [arabic,meaning]=vocabSides(line);
+  if(arabic.length===4){
+   if(group.present||rawForms.length)flush();
+   const gloss=meaning||group.uz||'';
+   if(!gloss)throw Error(`${number}-satrda to‘rt shakldan keyin — tarjima yozing.`);
+   group={uz:gloss};['past','present','imperative','masdar'].forEach((f,i)=>group[f]=arabic[i]);flush();continue;
+  }
+  if(arabic.length===1&&meaning){
+   if(rawForms.length){rawForms.push(arabic[0]);group.uz=meaning;flush()}
+   else{if(Object.keys(group).length)flush();out.push({ar:arabic[0],uz:meaning,type:'unknown'})}
+   continue;
+  }
+  if(arabic.length===1&&!meaning){
+   if(group.present)flush();rawForms.push(arabic[0]);
+   if(rawForms.length>4)throw Error(`${number}-satr: to‘rt shaklga tarjima ham qo‘shing.`);
+   continue;
+  }
+  if(!arabic.length&&line.length<=200){
+   if(rawForms.length){group.uz=line.replace(/:$/u,'');flush()}
+   else{if(Object.keys(group).length)flush();group={uz:line.replace(/:$/u,'')};explicit=true}
+   continue;
+  }
+  throw Error(`${number}-satrni ajratib bo‘lmadi. Nomlangan shakllar yoki AI rejimidan foydalaning.`);
+ }
+ if(Object.keys(group).length||rawForms.length)flush();
+ const words=normalizeWords(out);
+ if(!words.length||words.length>300)throw Error('1–300 ta so‘z yuboring.');
+ return words;
+}
+async function createDeck(){const b=$('generate');b.disabled=true;try{$('createStatus').textContent='To‘plam tayyorlanmoqda…';let words;if($('ai').checked){if(!remote)throw Error('AI uchun Telegram bot serveri va API kaliti ulanishi kerak. Hozir qo‘lda yaratish ishlaydi.');words=normalizeWords(await api('/enrich',{method:'POST',body:JSON.stringify({text:$('words').value})}))}else words=parse($('words').value);if(!words.length||words.length>300)throw Error('1 dan 300 tagacha so‘z kiriting');current={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name:$('name').value.trim()||'Yangi to‘plam',mode:$('newMode').value,words};mode=current.mode;reset();$('saveDialog').showModal();toast('To‘plam tayyor. Yuklab olishingiz mumkin.')}catch(e){$('createStatus').textContent=e.message}finally{b.disabled=false}}
+function cleanName(value){const name=value.trim().replace(/\s+/g,' ');if(!name||name.length>80)throw Error('1 dan 80 tagacha belgidan iborat nom kiriting.');return name}
+function askSaveName(){
+ $('saveDialog').close();$('saveError').textContent='';
+ $('saveName').value=current.name==='Yangi to‘plam'?'':current.name;
+ $('nameDialog').showModal();$('saveName').focus();$('saveName').select();
+}
+async function saveCurrent(){
+ const button=$('confirmSave');button.disabled=true;
+ try{
+  const name=cleanName($('saveName').value),old=saved.find(d=>d.id===current.id);
+  const id=old&&old.mode!==mode?(crypto.randomUUID?crypto.randomUUID():String(Date.now())):current.id;
+  const d={...current,id,name,mode},next=[d,...saved.filter(x=>x.id!==d.id)];
+  if(remote)await api('/decks',{method:'POST',body:JSON.stringify(d)});
+  else localStorage.setItem('lugatDecks',JSON.stringify(next));
+  saved=next;current=d;$('deckTitle').textContent=name;$('nameDialog').close();
+  toast('«'+name+'» nomi bilan saqlandi');
+ }catch(e){$('saveError').textContent='Saqlanmadi: '+e.message}
+ finally{button.disabled=false}
+}
+function renderLibrary(){$('decks').innerHTML=saved.length?saved.map((d,i)=>`<article class="deck"><div class="row spread"><div><h3>${esc(d.name)}</h3><div class="tiny">${d.words.length} ta so‘z · ${d.mode==='write'?'Yozma imtihon':'Flashcard'}</div></div><div class="row"><button class="primary" onclick="openDeck(${i})">Ochish →</button><button onclick="exportDeck(${i})">↓ HTML</button><button class="danger" onclick="deleteDeck(${i})" aria-label="To‘plamni o‘chirish">O‘chirish</button></div></div></article>`).join(''):'<div class="deck"><h3>Hali to‘plam yo‘q</h3><p>O‘z lug‘atlaringizni kiriting va birinchi mashqni boshlang.</p><button onclick="show(\'create\')">＋ Lug‘at yaratish</button></div>'}
+function openDeck(i){current=saved[i];mode=current.mode;reset()}function exportDeck(i){download(saved[i].mode,saved[i])}
+async function deleteDeck(i){if(!confirm('Bu to‘plam o‘chirilsinmi?'))return;try{if(remote)await api('/decks/'+saved[i].id,{method:'DELETE'});saved.splice(i,1);if(!remote)localStorage.setItem('lugatDecks',JSON.stringify(saved));renderLibrary()}catch(e){toast(e.message)}}
+function mixAll(m){if(!saved.length){toast('Avval kamida bitta to‘plam saqlang');return}const seen=new Set();current={id:crypto.randomUUID(),name:'Barcha to‘plamlardan aralash',mode:m,words:shuffle(saved.flatMap(d=>d.words).filter(w=>{const k=norm(w.ar)+'|'+norm(w.uz);if(seen.has(k))return false;seen.add(k);return true}))};mode=m;reset();$('saveDialog').showModal()}
+function download(m,d=current){const clone=document.documentElement.cloneNode(true);clone.querySelector('#embedded').textContent=JSON.stringify({...d,mode:m}).replace(/</g,'\\u003c');['decks','results','exercise'].forEach(id=>clone.querySelector('#'+id).innerHTML='');clone.querySelectorAll('script[src],.toast').forEach(e=>e.remove());clone.querySelectorAll('dialog').forEach(e=>e.removeAttribute('open'));clone.querySelector('#saveName').value='';const blob=new Blob(['<!doctype html>'+clone.outerHTML],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(d.name.replace(/[^\p{L}\p{N} _-]/gu,'')||'lugat')+'-'+m+'.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+document.addEventListener('keydown',e=>{if(view!=='study'||['INPUT','TEXTAREA','SELECT','BUTTON'].includes(document.activeElement.tagName)||$('saveDialog').open||$('nameDialog').open)return;if(mode==='flash'){if(e.key==='ArrowLeft')grade(false);if(e.key==='ArrowRight')grade(true);if(e.code==='Space'){e.preventDefault();flip()}}});init();
+</script></body></html>
