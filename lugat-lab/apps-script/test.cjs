@@ -1,0 +1,11 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),crypto=require('crypto');
+const p={SESSION_SECRET:'test-secret'},files=new Map();
+const context={MimeType:{PLAIN_TEXT:"text/plain"},PropertiesService:{getScriptProperties:()=>({getProperty:k=>p[k],setProperty:(k,v)=>p[k]=v})},Utilities:{getUuid:()=>crypto.randomUUID(),computeHmacSha256Signature:(v,k)=>crypto.createHmac('sha256',k).update(v).digest(),base64EncodeWebSafe:v=>Buffer.from(v).toString('base64url')},DriveApp:{getFolderById:()=>({getFilesByName:name=>({hasNext:()=>files.has(name),next:()=>files.get(name)}),createFile:(name,value)=>{const f={getBlob:()=>({getDataAsString:()=>value}),setContent:v=>value=v};files.set(name,f);return f}})},LockService:{getScriptLock:()=>({waitLock(){},releaseLock(){}})},HtmlService:{XFrameOptionsMode:{ALLOWALL:1},createHtmlOutput:html=>({html,setTitle(){return this},addMetaTag(){return this},setXFrameOptionsMode(){return this}})}};
+vm.createContext(context);vm.runInContext(fs.readFileSync(__dirname+'/Code.gs','utf8'),context);
+const token=context.session_('12');assert.equal(context.owner_(token),'12');assert.throws(()=>context.owner_(token+'x'));
+const words=context.parseWords_('كَتَبَ / يَكْتُبُ / اُكْتُبْ / كِتَابَةٌ — yozmoq');assert.equal(words.length,1);assert.equal(words[0].ar,'يَكْتُبُ');
+const deck=context.validDeck_({name:'Dars 1',mode:'write',words});context.rpc(token,'/decks','POST',deck);assert.equal(context.rpc(token,'/decks','GET').length,1);assert.equal(context.rpc(context.session_('13'),'/decks','GET').length,0);
+const html=context.rpc(token,'/export','POST',deck);assert(!html.includes(token));assert(html.includes('Dars 1'));assert(!html.includes('google.script.run'));
+const web=context.doGet({parameter:{session:token}}).html;assert(web.includes('google.script.run'));assert(web.includes("api('/export'"));assert(!web.includes('clone=document.documentElement'));
+context.rpc(token,'/decks/'+deck.id,'DELETE');assert.equal(context.rpc(token,'/decks','GET').length,0);
+console.log('PASS: parser, session tampering, per-user storage, save/delete, safe offline export, Mini App bridge');
