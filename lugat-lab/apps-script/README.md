@@ -15,3 +15,7 @@ Bot va Mini App bir shaxsiy Drive papkasidan foydalanadi. Mini App havolasi 24 s
 Gemini kalitsiz standart parser ishlaydi; erkin matnni AI tartiblashi uchun kalit kerak. Pullik xizmat avtomatik ulanmaydi. Har foydalanuvchiga 20 AI so‘rovi/kun, 100 to‘plam, har to‘plamga 300 so‘z limiti. Google umumiy kvotalari bundan avval tugashi mumkin. AIga yuborilgan lug‘atlar Google Gemini orqali qayta ishlanadi.
 
 Mahalliy tekshiruv: node apps-script/test.cjs. Live Telegram/Drive/Gemini/OAuth tekshiruvi hali talab qilinadi.
+
+## 400 tuzatish va webhookga ko‘chirish
+Kechikkan answerCallbackQuery endi foydalanuvchi amalini bekor qilmaydi. Boshqa Telegram xatolari metod nomi va maxfiy qiymatlarsiz sababi bilan chiqadi.
+Webhook kodi mahalliy testdan o‘tgan, jonli ulanish hali tekshirilmagan. Code.gs ni yangilab, yangi Web app versiyasini deploy qiling. WEB_APP_URL /exec manzilini tekshiring, keyin editor ichida enableWebhook bajaring. Eski polling trigger saqlanadi, ammo webhook rejimida xabar olmaydi. /start yuborgach checkWebhookHealth orqali LAST_WEBHOOK_OK va pending sonini tekshiring. Redirect/yetkazish xatosi qolsa restorePolling bilan qayting; to‘g‘ridan-to‘g‘ri Apps Script webhook ishlashini sinovsiz kafolatlamang. Takroriy update IDlar saqlanadi, ammo tashqi yuborish bilan Drive yozuvi atomik emas.

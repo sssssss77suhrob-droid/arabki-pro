@@ -5,7 +5,7 @@ function tg_(method,data){
  const multipart=Object.values(data||{}).some(v=>v&&typeof v.getBytes==='function');
  const r=UrlFetchApp.fetch('https://api.telegram.org/bot'+token+'/'+method,{method:'post',muteHttpExceptions:true,...(multipart?{payload:data}:{contentType:'application/json',payload:JSON.stringify(data||{})})});
  let j;try{j=JSON.parse(r.getContentText())}catch(e){throw Error('Telegram javobi olinmadi.')}
- if(!j.ok)throw Error('Telegram xatosi: '+r.getResponseCode());return j.result;
+ if(!j.ok){const error=Error('Telegram '+method+' ('+r.getResponseCode()+'): '+String(j.description||'Noma’lum xato').split(token).join('[maxfiy]').replace(/https?:\/\/\S+/g,'[havola]').slice(0,180));error.telegramCode=j.error_code;error.telegramMethod=method;throw error}return j.result;
 }
 function setup_(){
  const me=tg_('getMe',{});if(me.username!=='learnararabic_bot')throw Error('Bu learnararabic_bot tokeni emas.');
@@ -55,7 +55,7 @@ function deliver_(id,s,d){s.data.pending=d;s.data.nonce=Utilities.getUuid().slic
 function handle_(u){
  const c=u.callback_query,m=c?c.message:u.message;if(!m||m.chat.type!=='private')return;const id=String(m.chat.id);if(c&&String(c.from.id)!==id)return;
  const s=state_(id),text=m.text||'';
- if(c){tg_('answerCallbackQuery',{callback_query_id:c.id});const [action,arg]=c.data.split(':');
+ if(c){ackCallback_(c.id);const [action,arg]=String(c.data||'').split(':');
   if(action==='new'){s.data.step=arg;s.data.pending=null;save_(s);say_(id,'So‘zlarni arabcha va o‘zbekcha yuboring. To‘rt shakl bo‘lsa birlashtiraman. /cancel — bekor qilish.');return}
   if(action==='list'){if(!s.data.decks.length){say_(id,'Hali saqlangan to‘plam yo‘q.');return}for(const d of s.data.decks)say_(id,d.name+' · '+d.mode+' · '+d.words.length+' so‘z',{inline_keyboard:[[{text:'Yuklab olish',callback_data:'get:'+d.id},{text:'O‘chirish',callback_data:'delete:'+d.id}]]});return}
   if(action==='get'){const d=s.data.decks.find(x=>x.id===arg);if(d)document_(id,d);return}
@@ -70,6 +70,7 @@ function handle_(u){
  if(['flash','write'].includes(s.data.step)){say_(id,'Lug‘at tayyorlanmoqda…');const words=enrich_(text,s);deliver_(id,s,validDeck_({name:'Yangi lug‘at',mode:s.data.step,words}));return}say_(id,'Yaratish tugmasini tanlang.',menu_(id));
 }
 function pollTelegram_(){
+ if(props_().getProperty('DELIVERY_MODE')==='webhook')return;
  const lock=LockService.getScriptLock();if(!lock.tryLock(1000))return;
  try{const updates=tg_('getUpdates',{offset:Number(props_().getProperty('OFFSET')||0),limit:10,timeout:0,allowed_updates:['message','callback_query']});const start=Date.now();for(const u of updates){if(Date.now()-start>45000)break;try{handle_(u)}catch(e){const chat=u.message?.chat||u.callback_query?.message?.chat;if(chat?.type==='private')try{say_(chat.id,'Amal bajarilmadi. '+String(e.message).slice(0,220))}catch(ignore){}}props_().setProperty('OFFSET',String(u.update_id+1))}}finally{lock.releaseLock()}
 }
@@ -92,3 +93,37 @@ function doGet(e){
 }
 
 function configureBot(){const email=Session.getActiveUser().getEmail();if(!email||email!==Session.getEffectiveUser().getEmail())throw Error("Faqat loyiha egasi sozlashi mumkin.");setup_();}
+
+// Callback acknowledgements expire; this must not discard the user's action.
+function ackCallback_(id){try{tg_('answerCallbackQuery',{callback_query_id:id})}catch(e){if(e.telegramCode===400&&/query is too old|query id is invalid|query_id_invalid|response timeout expired/i.test(e.message))return;throw e}}
+function requireOwner_(){const email=Session.getActiveUser().getEmail();if(!email||email!==Session.getEffectiveUser().getEmail())throw Error('Faqat loyiha egasi.');}
+function enableWebhook(){
+ requireOwner_();const p=props_(),url=p.getProperty('WEB_APP_URL');
+ if(!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(url||''))throw Error('Avval yangi kodni Web app sifatida deploy qiling va /exec manzilini WEB_APP_URLga kiriting.');
+ const lock=LockService.getScriptLock();lock.waitLock(20000);
+ try{if(!p.getProperty('WEBHOOK_SECRET'))p.setProperty('WEBHOOK_SECRET',Utilities.getUuid()+Utilities.getUuid());
+ const hook=url+'?hook='+encodeURIComponent(p.getProperty('WEBHOOK_SECRET'));
+ const existing=tg_('getWebhookInfo',{});if(existing.url&&existing.url!==hook)throw Error('Boshqa webhook bor. Avval uni tekshiring.');
+ tg_('setWebhook',{url:hook,max_connections:1,allowed_updates:['message','callback_query'],drop_pending_updates:false});
+ p.setProperty('DELIVERY_MODE','webhook');
+ console.log('Webhook o‘rnatildi. Endi /start yuboring, keyin checkWebhookHealth ni bajaring. Yetkazish hali tasdiqlanmagan.');
+ }finally{lock.releaseLock()}
+}
+function checkWebhookHealth(){requireOwner_();const info=tg_('getWebhookInfo',{});console.log(JSON.stringify({configured:!!info.url,pending:info.pending_update_count,lastError:info.last_error_message||null,lastDelivery:props_().getProperty('LAST_WEBHOOK_OK')||null}));}
+function restorePolling(){requireOwner_();const lock=LockService.getScriptLock();lock.waitLock(20000);try{tg_('deleteWebhook',{drop_pending_updates:false});props_().setProperty('DELIVERY_MODE','polling');console.log('Polling qayta yoqildi.')}finally{lock.releaseLock()}}
+function doPost(e){
+ const expected=props_().getProperty('WEBHOOK_SECRET');
+ if(!expected||!e||e.parameter?.hook!==expected)throw Error('Ruxsat yo‘q.');
+ if(!e.postData||e.postData.contents.length>100000)throw Error('Noto‘g‘ri so‘rov.');
+ const u=JSON.parse(e.postData.contents);if(!Number.isSafeInteger(u.update_id))throw Error('Noto‘g‘ri update.');
+ const lock=LockService.getScriptLock();lock.waitLock(20000);
+ try{
+ const recent=JSON.parse(props_().getProperty('RECENT_WEBHOOK_IDS')||'[]');
+ if(!recent.includes(u.update_id)){
+ try{handle_(u)}catch(error){const chat=u.message?.chat||u.callback_query?.message?.chat;if(chat?.type==='private')say_(chat.id,'Amal bajarilmadi. '+String(error.message).slice(0,220));else throw error;}
+ recent.push(u.update_id);props_().setProperty('RECENT_WEBHOOK_IDS',JSON.stringify(recent.slice(-150)));props_().setProperty('LAST_WEBHOOK_OK',new Date().toISOString());
+ }
+ // HtmlService avoids ContentService's documented redirect. Verify live HTTP delivery before relying on it.
+ return HtmlService.createHtmlOutput('OK');
+ }finally{lock.releaseLock()}
+}
